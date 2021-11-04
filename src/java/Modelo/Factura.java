@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package Modelo;
+import java.time.*;
+//import java.util.Date;
 
 /**
  *
@@ -13,16 +15,16 @@ public class Factura {
     
     private int idFactura;
     private Sucursal s;
-    private String fecha;
-    private Cliente c;
+    private LocalDate fecha;
+    private String nombreCliente;
     private Empleado e;
     private Receta r;
 
-    public Factura(int idFactura, Sucursal s, String fecha, Cliente c, Empleado e, Receta r) {
+    public Factura(int idFactura, Sucursal s, LocalDate fecha, String nombreCliente, Empleado e, Receta r) {
         this.idFactura = idFactura;
         this.s = s;
         this.fecha = fecha;
-        this.c = c;
+        this.nombreCliente = nombreCliente;
         this.e = e;
         this.r = r;
     }
@@ -43,20 +45,20 @@ public class Factura {
         this.s = s;
     }
 
-    public String getFecha() {
+    public LocalDate getFecha() {
         return fecha;
     }
 
-    public void setFecha(String fecha) {
+    public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
 
-    public Cliente getC() {
-        return c;
+    public String getNombreCliente() {
+        return nombreCliente;
     }
 
-    public void setC(Cliente c) {
-        this.c = c;
+    public void setNombreCliente(String nombreCliente) {
+        this.nombreCliente = nombreCliente;
     }
 
     public Empleado getE() {
@@ -74,6 +76,8 @@ public class Factura {
     public void setR(Receta r) {
         this.r = r;
     }
+
+    
     
     
 }

@@ -12,14 +12,17 @@ package Modelo;
 public class Empleado {
     
     private int idEmpleado;
-    private Persona p;
+    private String nombre;
     private String puesto;
     private String usuario;
     private String contraseña;
 
-    public Empleado(int idEmpleado, Persona p, String puesto, String usuario, String contraseña) {
+    public Empleado() {
+    }
+    
+    public Empleado(int idEmpleado, String nombre, String puesto, String usuario, String contraseña) {
         this.idEmpleado = idEmpleado;
-        this.p = p;
+        this.nombre = nombre;
         this.puesto = puesto;
         this.usuario = usuario;
         this.contraseña = contraseña;
@@ -33,12 +36,12 @@ public class Empleado {
         this.idEmpleado = idEmpleado;
     }
 
-    public Persona getP() {
-        return p;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setP(Persona p) {
-        this.p = p;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getPuesto() {
@@ -64,6 +67,9 @@ public class Empleado {
     public void setContraseña(String contraseña) {
         this.contraseña = contraseña;
     }
+    
+
+    
     
     
 }

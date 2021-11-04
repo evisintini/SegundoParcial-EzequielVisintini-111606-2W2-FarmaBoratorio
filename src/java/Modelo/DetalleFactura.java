@@ -17,6 +17,9 @@ public class DetalleFactura {
     private int cantidad;
     private float precio;
 
+    public DetalleFactura() {
+    }
+    
     public DetalleFactura(int idDetalleFactura, Factura f, Producto p, int cantidad, float precio) {
         this.idDetalleFactura = idDetalleFactura;
         this.f = f;
@@ -36,6 +39,10 @@ public class DetalleFactura {
     public Factura getF() {
         return f;
     }
+    
+    public int getIdFactura() {
+        return f.getIdFactura();
+    }
 
     public void setF(Factura f) {
         this.f = f;
@@ -43,6 +50,10 @@ public class DetalleFactura {
 
     public Producto getP() {
         return p;
+    }
+    
+    public String getNombreProducto() {
+        return p.getNombre();
     }
 
     public void setP(Producto p) {
