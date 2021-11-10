@@ -19,6 +19,12 @@ public class DetalleFactura {
 
     public DetalleFactura() {
     }
+
+    public DetalleFactura(Producto p, int cantidad, float precio) {
+        this.p = p;
+        this.cantidad = cantidad;
+        this.precio = precio;
+    }
     
     public DetalleFactura(int idDetalleFactura, Factura f, Producto p, int cantidad, float precio) {
         this.idDetalleFactura = idDetalleFactura;

@@ -9,6 +9,7 @@ import GestorBD.GestorBD;
 import Modelo.DetalleFactura;
 import Modelo.Empleado;
 import Modelo.Producto;
+import Modelo.Venta;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.NumberFormat;
@@ -33,14 +34,16 @@ public class LoginServlet extends HttpServlet {
     int idProducto;
     int item;
     int cantidad;
+    float totalapagar;
     String nombreProducto;
     float precio;
     float subtotal;
     GestorBD g = new GestorBD();
     Empleado e = new Empleado();
     Producto p = new Producto();
+    Venta v = new Venta();
     DetalleFactura d = new DetalleFactura();
-    List<DetalleFactura> listaVentas;
+    ArrayList<Venta> listaVentas = new ArrayList<>();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -186,40 +189,50 @@ public class LoginServlet extends HttpServlet {
         }
         if (menu.equals("Ventas")) {
             switch (accion) {
+                case "Listar":
+                    ArrayList<Venta> listav = new ArrayList<>();
+                    request.getSession().setAttribute("ventas", listav);
+//                    ArrayList<Empleado> lista = g.getEmpleados();
+//                    request.setAttribute("empleados", lista);
+
+                    break;
                 case "BuscarProducto":
                     idProducto = Integer.parseInt(request.getParameter("idProducto"));
                     p = g.ConsultaPorCodigo(idProducto);
                     request.setAttribute("productoSeleccionado", p);
                     break;
-                case "BuscarFactura":
-                    idProducto = Integer.parseInt(request.getParameter("idProducto"));
-                    p = g.ConsultaPorCodigo(idProducto);
-                    request.setAttribute("productoSeleccionado", p);
-                    break;
-                case "AgregarProducto":
-                    double totalapagar = 0;
-                    d = new DetalleFactura();
-
-                    //item++;
+                case "AgregarProducto":                    
+                    totalapagar = 0;
+                    v = new Venta();
+                    item++;
                     idProducto = Integer.parseInt(request.getParameter("idProducto"));
                     nombreProducto = request.getParameter("nombreproducto");
-                    Producto p2 = new Producto(idProducto, nombreProducto);
                     precio = Float.parseFloat(request.getParameter("precioproducto"));
                     cantidad = Integer.parseInt(request.getParameter("cantidadproducto"));
                     subtotal = precio * cantidad;
-
-                    d.setP(p2);
-                    d.setCantidad(cantidad);
-                    d.setPrecio(precio);
-                    listaVentas.add(d);
-
+                    //.setItem(item);
+//                    d.setP(p);
+                    
+//                    p = new Producto(idProducto, nombreProducto);
+//                    d.setIdDetalleFactura(p.getIdProducto());
+                    
+                    v.setIdProducto(p.getIdProducto());
+                    v.setNombreProducto(nombreProducto);
+                    v.setCantidad(cantidad);
+                    v.setPrecio(precio);
+                    v.setSubtotal(subtotal);
+                    //v.setIdProducto(idProducto);
+                    listaVentas = (ArrayList<Venta>)request.getSession().getAttribute("ventas");
+                    listaVentas.add(v);
+                    request.getSession().setAttribute("ventas", listaVentas);
 //                    System.err.println("error venta");
 //                    request.setAttribute("listaventas", listaVentas);
+                    
 //                    for (int i = 0; i < listaVentas.size(); i++) {
 //                        totalapagar += listaVentas.get(i).getSubtotal();
 //                    }
-//                    formatoNumero1 = NumberFormat.getNumberInstance();
-//                    total1 = formatoNumero1.format(totalapagar);
+//                    NumberFormat formatoNumero1 = NumberFormat.getNumberInstance();
+//                    String total1 = formatoNumero1.format(totalapagar);
 //                    request.setAttribute("totalapagar", total1);
                     break;
 

@@ -29,31 +29,31 @@
                         <a class="nav-link active" aria-current="page" href="LoginServlet?menu=Empleados&accion=Listar" target="miContenedor">Empleados</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="LoginServlet?menu=Ventas&accion=default" target="miContenedor">Ventas</a>
+                        <a class="nav-link active" aria-current="page" href="LoginServlet?menu=Ventas&accion=Listar" target="miContenedor">Ventas</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="LoginServlet?menu=Reportes" target="miContenedor">Reportes</a>
                     </li>
                 </ul>
-                <div class="btn-group">
-                    <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <div class="dropdown">
+                    <button class="btn btn-danger btn-lg dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                         ${empleado.getNombre()}
                     </button>
-                    <div class="dropdown-menu">
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                         <a class="dropdown-item" href="#"><i class="fas fa-user"></i></a>
                         <a class="dropdown-item" href="#">${empleado.getPuesto()}</a>
                         <div class="dropdown-divider"></div>
-                        <form class="dropdown-item" method="POST" action="Validar">
+                        <form class="dropdown-item" method="POST" action="ValidarServlet">
                             <button class="btn btn-danger center-block" type="submit" name="accion" value="Salir">Cerrar Sesion</button>
                         </form>
-                    </div>
+                    </ul>
                 </div>
             </div>
         </nav>
         <div class="m-3" style="height:900px;">
             <iframe name="miContenedor" style="height:100%; width:100%;" frameBorder="1"></iframe>
         </div>
-        
+
 
         <!-- Optional JavaScript; choose one of the two! -->
 

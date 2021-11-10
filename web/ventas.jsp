@@ -37,12 +37,8 @@
                             <input class="form-control col-md-4" type="text" name="txtnumerofactura" value="${numerofactura}">
                         </div>    
                         <div class="form-group row">
-                            <label class="col-sm-4 col-form-label">Sucursal</label>
-                            <input class="form-control col-md-4" type="text" name="txtnumerofactura" value="${numerofactura}">
-                        </div> 
-                        <div class="form-group row">
                             <label class="col-sm-4 col-form-label">Fecha</label>
-                            <input class="form-control col-md-4" type="text" name="txtnumerofactura" value="${numerofactura}">
+                            <input type="date" name="fecha" min="1950-01-01" name="calendario" />
                         </div> 
                         <div class="form-group row">
                             <label class="col-sm-4 col-form-label">Nombre del cliente</label>
@@ -50,8 +46,13 @@
                         </div> 
                         <div class="form-group row">
                             <label class="col-sm-4 col-form-label">Empleado</label>
-                            <input class="form-control col-md-4" type="text" name="txtnumerofactura" value="${numerofactura}">
+                            <select name="empleado">
+                                <c:forEach var="empleado" items="${empleados}">
+                                    <option value="${ empleado.getIdEmpleado() }">${ empleado.getNombre() }</option>
+                                </c:forEach>
+                            </select>
                         </div>
+
                         <div class="form-group row">
                             <label class="col-sm-4 col-form-label">Numero de receta</label>
                             <input class="form-control col-md-4" type="text" name="txtnumerofactura" value="${numerofactura}">
@@ -69,10 +70,10 @@
                                     <input type="submit" name="accion" value="BuscarProducto" class="btn btn-outline-dark">
                                 </div>
                                 <div class="col-md-6 d-flex form-group">
-                                    <input type="text" name="nombreProducto" class="form-control" placeholder="Nombre Producto" value="${productoSeleccionado.getNombre()}">
+                                    <input type="text" name="nombreproducto" class="form-control" placeholder="Nombre Producto" value="${productoSeleccionado.getNombre()}">
                                 </div>
                                 <div class="col-md-4 d-flex form-group">
-                                    <input type="text" name="precioProducto" class="form-control" placeholder="$ 0000.00" value="${productoSeleccionado.getPrecio()}">
+                                    <input type="text" name="precioproducto" class="form-control" placeholder="$ 0000.00" value="${productoSeleccionado.getPrecio()}">
                                 </div>
                                 <div class="col-md-8 d-flex form-group">
                                     <input type="number" value="1" name="cantidadproducto" class="form-control" placeholder="Cantidad">
@@ -86,13 +87,11 @@
             </div>
             <div class="col-md-7">
                 <div class="card">
-                    
+
                     <div class="card-body">
                         <table class="table">
                             <thead class="thead-dark">
                                 <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Codigo</th>
                                     <th scope="col">Producto</th>
                                     <th scope="col">Precio</th>
                                     <th scope="col">Cantidad</th>
@@ -101,14 +100,11 @@
                                 </tr>
                             </thead>
                             <tbody>                   
-                                <c:forEach var="lista" items="${listaventas}">
+                                <c:forEach var="lista" items="${sessionScope.ventas}">
                                     <tr>
-                                        <th scope="row" style="width: 30px;">${lista.getItem()}</th>
-                                        <td style="width: 30px;">${lista.getIdProducto()}</td>
-                                        <td style="width: 350px;">${lista.getDescripcionProducto()}</td>
-                                        <td>$ ${lista.getPrecio()}</td>
+                                        <td style="width: 350px;">${lista.getNombreProducto()}</td>
+                                        <td>${lista.getPrecio()}</td>
                                         <td style="width: 30px;">${lista.getCantidad()}</td>
-                                        <td>$ ${lista.getSubtotal()}</td>
                                         <td class="columna">
                                             <a class="btn btn-danger">Eliminar</a>
                                             <a class="btn btn-warning">Editar</a>
@@ -118,23 +114,23 @@
                             </tbody>
                         </table>
                     </div>
-                    <%-- <div class="card-footer d-flex">
+                     <div class="card-footer d-flex">
                 <div class="col-md-8 text-center">
                     <a class="btn btn-success" onclick="print()" href="Controlador?menu=Ventas&accion=GenerarVenta">Generar Venta</a>
                     <a class="btn btn-danger" href="Controlador?menu=Ventas&accion=NuevaVenta">Nueva Venta</a>
                 </div>
-                <div class="col-md-4">
+               <%-- <div class="col-md-4">
                     <input type=text" name="txttotalapagar" class="form-control" placeholder="$ 00.000.00" disabled="disabled" value="${totalapagar}">
                 </div>--%>
                 </div>                    
             </div>
         </div>
-                    <%--<div>
-            <h2>Contenido del carrito</h2>
-            <ul>
-                <%
-                    if (lista != null) {
-                        for (String item : lista) {
+        <%--<div>
+<h2>Contenido del carrito</h2>
+<ul>
+    <%
+        if (lista != null) {
+            for (String item : lista) {
 
                 %>
                 <li><%= item%></li>
