@@ -18,15 +18,22 @@ public class Factura {
     private LocalDate fecha;
     private String nombreCliente;
     private Empleado e;
-    private Receta r;
+    private int numeroReceta;
 
-    public Factura(int idFactura, Sucursal s, LocalDate fecha, String nombreCliente, Empleado e, Receta r) {
+    public Factura() {
+    }
+
+    public Factura(int idFactura) {
+        this.idFactura = idFactura;
+    }
+    
+    public Factura(int idFactura, Sucursal s, LocalDate fecha, String nombreCliente, Empleado e, int numeroReceta) {
         this.idFactura = idFactura;
         this.s = s;
         this.fecha = fecha;
         this.nombreCliente = nombreCliente;
         this.e = e;
-        this.r = r;
+        this.numeroReceta = numeroReceta;
     }
 
     public int getIdFactura() {
@@ -69,15 +76,13 @@ public class Factura {
         this.e = e;
     }
 
-    public Receta getR() {
-        return r;
+    public int getNumeroReceta() {
+        return numeroReceta;
     }
 
-    public void setR(Receta r) {
-        this.r = r;
+    public void setNumeroReceta(int numeroReceta) {
+        this.numeroReceta = numeroReceta;
     }
-
-    
     
     
 }

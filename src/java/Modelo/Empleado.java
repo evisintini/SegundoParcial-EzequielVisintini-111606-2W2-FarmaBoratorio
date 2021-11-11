@@ -19,6 +19,10 @@ public class Empleado {
 
     public Empleado() {
     }
+
+    public Empleado(int idEmpleado) {
+        this.idEmpleado = idEmpleado;
+    }
     
     public Empleado(int idEmpleado, String nombre, String puesto, String usuario, String contraseña) {
         this.idEmpleado = idEmpleado;

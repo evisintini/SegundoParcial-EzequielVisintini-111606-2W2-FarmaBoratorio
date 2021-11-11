@@ -8,7 +8,9 @@ package Servlets;
 import GestorBD.GestorBD;
 import Modelo.DetalleFactura;
 import Modelo.Empleado;
+import Modelo.Factura;
 import Modelo.Producto;
+import Modelo.Sucursal;
 import Modelo.Venta;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -32,17 +34,23 @@ public class LoginServlet extends HttpServlet {
 
     int idEmpleado;
     int idProducto;
+    int idFactura;
     int item;
     int cantidad;
     float totalapagar;
     String nombreProducto;
     float precio;
     float subtotal;
+
     GestorBD g = new GestorBD();
     Empleado e = new Empleado();
     Producto p = new Producto();
     Venta v = new Venta();
     DetalleFactura d = new DetalleFactura();
+    Factura f = new Factura();
+    Sucursal s = new Sucursal();
+
+    ArrayList<DetalleFactura> listaDetalleFactura = new ArrayList<>();
     ArrayList<Venta> listaVentas = new ArrayList<>();
 
     /**
@@ -187,24 +195,49 @@ public class LoginServlet extends HttpServlet {
             RequestDispatcher rd = getServletContext().getRequestDispatcher("/empleados.jsp");
             rd.forward(request, response);
         }
+        if (menu.equals("Facturas")) {
+            switch (accion) {   
+                
+                case "Generar factura":
+
+                    int idSucursal = Integer.parseInt(request.getParameter("sucursal"));
+                    String nombreCliente = request.getParameter("nombreCliente");
+                    int idEmpleado = Integer.parseInt(request.getParameter("empleado"));
+                    int numeroReceta = Integer.parseInt(request.getParameter("numeroReceta"));
+                    s = new Sucursal(idSucursal);
+                    e = new Empleado(idEmpleado);
+
+                    f.setS(s);
+                    f.setNombreCliente(nombreCliente);
+                    f.setE(e);
+                    f.setNumeroReceta(numeroReceta);
+
+                    g.agregarFactura(f);
+                    request.getRequestDispatcher("LoginServlet?menu=Ventas&accion=Listar").forward(request, response);
+                    break;
+                default:
+            }
+            request.getRequestDispatcher("facturas.jsp").forward(request, response);
+        }
         if (menu.equals("Ventas")) {
             switch (accion) {
+                
                 case "Listar":
                     ArrayList<Venta> listav = new ArrayList<>();
                     request.getSession().setAttribute("ventas", listav);
-//                    ArrayList<Empleado> lista = g.getEmpleados();
-//                    request.setAttribute("empleados", lista);
-
                     break;
+
                 case "BuscarProducto":
                     idProducto = Integer.parseInt(request.getParameter("idProducto"));
                     p = g.ConsultaPorCodigo(idProducto);
                     request.setAttribute("productoSeleccionado", p);
                     break;
-                case "AgregarProducto":                    
+
+                case "AgregarProducto":
                     totalapagar = 0;
                     v = new Venta();
                     item++;
+//                    idFactura = Integer.parseInt(request.getParameter("factura"));
                     idProducto = Integer.parseInt(request.getParameter("idProducto"));
                     nombreProducto = request.getParameter("nombreproducto");
                     precio = Float.parseFloat(request.getParameter("precioproducto"));
@@ -212,22 +245,32 @@ public class LoginServlet extends HttpServlet {
                     subtotal = precio * cantidad;
                     //.setItem(item);
 //                    d.setP(p);
-                    
+
 //                    p = new Producto(idProducto, nombreProducto);
 //                    d.setIdDetalleFactura(p.getIdProducto());
+                    Factura f2 = new Factura(idFactura);
+                    d.setF(f2);
+                    Producto p2 = new Producto(idProducto);
+                    d.setP(p2);
+                    d.setCantidad(cantidad);
+                    d.setPrecio(subtotal);
                     
                     v.setIdProducto(p.getIdProducto());
                     v.setNombreProducto(nombreProducto);
                     v.setCantidad(cantidad);
                     v.setPrecio(precio);
                     v.setSubtotal(subtotal);
-                    //v.setIdProducto(idProducto);
-                    listaVentas = (ArrayList<Venta>)request.getSession().getAttribute("ventas");
+                    
+                    listaDetalleFactura = (ArrayList<DetalleFactura>) request.getSession().getAttribute("detalleFactura");
+                    listaDetalleFactura.add(d);
+                    request.getSession().setAttribute("detalle", listaDetalleFactura);
+                    
+                    listaVentas = (ArrayList<Venta>) request.getSession().getAttribute("ventas");
                     listaVentas.add(v);
                     request.getSession().setAttribute("ventas", listaVentas);
-//                    System.err.println("error venta");
+                    System.err.println("error venta");
 //                    request.setAttribute("listaventas", listaVentas);
-                    
+
 //                    for (int i = 0; i < listaVentas.size(); i++) {
 //                        totalapagar += listaVentas.get(i).getSubtotal();
 //                    }
@@ -235,10 +278,8 @@ public class LoginServlet extends HttpServlet {
 //                    String total1 = formatoNumero1.format(totalapagar);
 //                    request.setAttribute("totalapagar", total1);
                     break;
-
-                default:
             }
-            request.getRequestDispatcher("ventas.jsp").forward(request, response);
+            request.getRequestDispatcher("generarVenta.jsp").forward(request, response);
         }
         if (menu.equals("Reportes")) {
             request.getRequestDispatcher("reportes.jsp").forward(request, response);
@@ -272,12 +313,7 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-
-        String producto = request.getParameter("producto");
-        HttpSession sesion = request.getSession();
-        ArrayList<String> lista = (ArrayList<String>) sesion.getAttribute("lista");
-        lista.add(producto);
-        response.sendRedirect("ventas.jsp");
+       
     }
 
     /**

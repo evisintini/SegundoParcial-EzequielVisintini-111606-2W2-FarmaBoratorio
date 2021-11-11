@@ -15,9 +15,16 @@ public class Sucursal {
     private String direccion;
     private String ciudad;
     private String provincia;
-    private int telefono;
+    private float telefono;
 
-    public Sucursal(int idSucursal, String direccion, String ciudad, String provincia, int telefono) {
+    public Sucursal() {
+    }
+
+    public Sucursal(int idSucursal) {
+        this.idSucursal = idSucursal;
+    }
+    
+    public Sucursal(int idSucursal, String direccion, String ciudad, String provincia, float telefono) {
         this.idSucursal = idSucursal;
         this.direccion = direccion;
         this.ciudad = ciudad;
@@ -57,11 +64,11 @@ public class Sucursal {
         this.provincia = provincia;
     }
 
-    public int getTelefono() {
+    public float getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(float telefono) {
         this.telefono = telefono;
     }
     
