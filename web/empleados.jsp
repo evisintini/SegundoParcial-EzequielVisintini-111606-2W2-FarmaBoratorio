@@ -18,7 +18,7 @@
                     <h5 class="card-title">Empleados</h5>
                     <h6 class="card-subtitle mb-2 text-muted">En este panel podras gestionar los datos de los empleados en el sistema</h6>
                     <div>
-                        <form action="LoginServlet?menu=Empleados" method="POST">
+                        <form action="AltaEmpleadoServlet?menu=Empleados" method="POST">
                             <div class="form-group">
                                 <label>Nombre</label>
                                 <input type="text" class="form-control" name="txtNombre" value="${empleadoSeleccionado.getNombre()}">
@@ -40,6 +40,7 @@
                             <br>
                             <input type="submit" class="btn btn-primary" name="accion" value="Agregar" >
                             <input type="submit" class="btn btn-success" name="accion" value="Actualizar" >
+                            <a class="btn btn-warning" href="AltaEmpleadoServlet?menu=Empleados&accion=Actualizar&idEmpleado=${empleado.getIdEmpleado()}">ACTUALIZAR</a>
                         </form>
                     </div>
                 </div>
@@ -64,8 +65,8 @@
                                 <td>${empleado.getUsuario()}</td>
                                 <td>${empleado.getContraseña()}</td>
                                 <td>
-                                    <a class="btn btn-warning" href="LoginServlet?menu=Empleados&accion=Cargar&idEmpleado=${empleado.getIdEmpleado()}">Editar</a>
-                                    <a class="btn btn-danger" href="LoginServlet?menu=Empleados&accion=Eliminar&idEmpleado=${empleado.getIdEmpleado()}">Eliminar</a>
+                                    <a class="btn btn-warning" href="AltaEmpleadoServlet?menu=Empleados&accion=Cargar&idEmpleado=${empleado.getIdEmpleado()}">Editar</a>
+                                    <a class="btn btn-danger" href="AltaEmpleadoServlet?menu=Empleados&accion=Eliminar&idEmpleado=${empleado.getIdEmpleado()}">Eliminar</a>
                                 </td>
                             </tr>
                         </c:forEach>

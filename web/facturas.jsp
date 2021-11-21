@@ -35,11 +35,7 @@
                 <div class="card">
                     <h5 class="card-header">Datos Factura</h5>
                     <div class="card-header">
-                        <form action="LoginServlet?menu=Ventas" method="POST">
-                            <%--<div class="form-group row">
-                                <label class="col-sm-4 col-form-label">Numero de factura</label>
-                                <input class="form-control col-md-4" type="text" name="txtnumerofactura" value="${numerofactura}">
-                            </div>--%>
+                        <form action="AltaFacturaServlet?menu=Facturas" method="POST">
                             <div class="form-group row">
                                 <label class="col-sm-4 col-form-label">Sucursal</label>
                                 <select name="sucursal">
@@ -48,13 +44,13 @@
                                     </c:forEach>
                                 </select>
                             </div>
-                            <div class="form-group row">
+                            <%--<div class="form-group row">
                                 <label class="col-sm-4 col-form-label">Fecha</label>
                                 <input type="date" name="fecha" min="1950-01-01"/>
-                            </div> 
+                            </div> --%> 
                             <div class="form-group row">
                                 <label class="col-sm-4 col-form-label">Nombre del cliente</label>
-                                <input class="form-control col-md-4" type="text" name="nombreCliente" value="${numerofactura}">
+                                <input class="form-control col-md-4" type="text" name="nombreCliente">
                             </div> 
                             <div class="form-group row">
                                 <label class="col-sm-4 col-form-label">Empleado</label>
@@ -64,12 +60,8 @@
                                     </c:forEach>
                                 </select>
                             </div>
-                            <div class="form-group row">
-                                <label class="col-sm-4 col-form-label">Numero de receta</label>
-                                <input class="form-control col-md-4" type="text" name="numeroReceta" value="${numerofactura}">
-                            </div>
                             <div>
-                                <input type="submit" name="accion" value="Generar factura"  class="btn btn-outline-primary col text-center">
+                                <input type="submit" name="accion" value="Generar Factura"  class="btn btn-outline-primary col text-center">
                             </div>
                         </form>
                     </div>

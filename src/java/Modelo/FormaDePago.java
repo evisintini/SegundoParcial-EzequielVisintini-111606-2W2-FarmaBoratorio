@@ -14,6 +14,9 @@ public class FormaDePago {
     private int idFormasDePago;
     private String nombre;
 
+    public FormaDePago() {
+    }
+
     public FormaDePago(int idFormasDePago, String nombre) {
         this.idFormasDePago = idFormasDePago;
         this.nombre = nombre;

@@ -14,7 +14,7 @@ public class Producto {
     private int idProducto;
     private String nombre;
     private float precio;
-    private boolean isVentaLibre;
+    private int stock;
 
     public Producto() {
     }
@@ -23,25 +23,18 @@ public class Producto {
         this.idProducto = idProducto;
     }
     
-    public Producto(int idProducto, String nombre, float precio) {
-        this.idProducto = idProducto;
-        this.nombre = nombre;
-        this.precio = precio;
-    }
-
-    
     public Producto(int idProducto, String nombre) {
         this.idProducto = idProducto;
         this.nombre = nombre;
     }
-        
-    public Producto(int idProducto, String nombre, float precio, boolean isVentaLibre) {
+
+    public Producto(int idProducto, String nombre, float precio, int stock) {
         this.idProducto = idProducto;
         this.nombre = nombre;
         this.precio = precio;
-        this.isVentaLibre = isVentaLibre;
-    }
-
+        this.stock = stock;
+    }       
+    
     public int getIdProducto() {
         return idProducto;
     }
@@ -66,13 +59,14 @@ public class Producto {
         this.precio = precio;
     }
 
-    public boolean isIsVentaLibre() {
-        return isVentaLibre;
+    public int getStock() {
+        return stock;
     }
 
-    public void setIsVentaLibre(boolean isVentaLibre) {
-        this.isVentaLibre = isVentaLibre;
+    public void setStock(int stock) {
+        this.stock = stock;
     }
+
     
     
 }

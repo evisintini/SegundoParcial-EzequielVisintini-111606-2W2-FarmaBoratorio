@@ -18,7 +18,7 @@
                     <h5 class="card-title">Productos</h5>
                     <h6 class="card-subtitle mb-2 text-muted">En este panel podras gestionar los datos de los productos en el sistema</h6>
                     <div>
-                        <form action="LoginServlet?menu=Productos" method="POST">
+                        <form action="AltaProductoServlet?menu=Productos" method="POST">
                             <div class="form-group">
                                 <label>Nombre</label>
                                 <input type="text" class="form-control" name="txtNombre" value="${productoSeleccionado.getNombre()}">
@@ -28,9 +28,10 @@
                                 <input type="number" class="form-control" name="txtPrecio" value="${productoSeleccionado.getPuesto()}">
                             </div>
                             <div class="form-group">
-                                <label>Usuario</label>
-                                <input type="checkbox" name="chkVentaLibre " value="${productoSeleccionado.isIsVentaLibre()}">
-                                <small class="form-text text-muted">Ingrese el Usuario que utilizará para el inicio de sesión</small>
+                                <div class="form-group">
+                                    <label>Stock</label>
+                                    <input type="number" class="form-control" name="txtStock" value="${productoSeleccionado.getStock()}">
+                                </div>
                             </div>
                             <br>
                             <input type="submit" class="btn btn-primary" name="accion" value="Agregar" >
@@ -46,19 +47,19 @@
                             <th scope="col">Id</th>
                             <th scope="col">Nombre</th>
                             <th scope="col">Precio</th>
-                            <th scope="col">Venta Libre</th>
+                            <th scope="col">Stock</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody>                        
                         <c:forEach var="producto" items="${productos}">
                             <tr>
-                                <th scope="row">${producto.getIdProducto()}</th>
-                                <td>${producto.getNombre()}</td>
-                                <td>${producto.getPrecio()}</td>
-                                <td>${producto.isIsVentaLibre()}</td>
+                                <th scope="row">${producto.idProducto}</th>
+                                <td>${producto.nombre}</td>
+                                <td>${producto.precio}</td>
+                                <td>${producto.stock}</td>
                                 <td>
-                                    <a class="btn btn-warning" href="LoginServlet?menu=Productos&accion=Cargar&IdProducto=${producto.getIdProducto()}">Editar</a>
-                                    <a class="btn btn-danger" href="LoginServlet?menu=Productos&accion=Eliminar&IdProducto=${producto.getIdProducto()}">Eliminar</a>
+                                    <a class="btn btn-warning" href="AltaProductoServlet?menu=Productos&accion=Cargar&idProducto=${producto.getIdProducto()}">Editar</a>
+                                    <a class="btn btn-danger" href="AltaProductoServlet?menu=Productos&accion=Eliminar&idProducto=${producto.idProducto}">Eliminar</a>
                                 </td>
                             </tr>
                         </c:forEach>

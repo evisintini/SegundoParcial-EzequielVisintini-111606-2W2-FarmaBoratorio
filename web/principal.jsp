@@ -23,16 +23,16 @@
                         <a class="nav-link active" aria-current="page" href="#">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="LoginServlet?menu=Productos&accion=Listar" target="miContenedor">Productos</a>
+                        <a class="nav-link active" aria-current="page" href="AltaProductoServlet?menu=Productos&accion=Listar" target="miContenedor">Productos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="LoginServlet?menu=Empleados&accion=Listar" target="miContenedor">Empleados</a>
+                        <a class="nav-link active" aria-current="page" href="AltaEmpleadoServlet?menu=Empleados&accion=Listar" target="miContenedor">Empleados</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="LoginServlet?menu=Facturas&accion=Listar" target="miContenedor">Generar Factura</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="LoginServlet?menu=Ventas&accion=Listar" target="miContenedor">Ventas</a>
+                        <a class="nav-link active" aria-current="page" href="GenerarVentaServlet?menu=Ventas&accion=Listar" target="miContenedor">Ventas</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="LoginServlet?menu=Reportes" target="miContenedor">Reportes</a>

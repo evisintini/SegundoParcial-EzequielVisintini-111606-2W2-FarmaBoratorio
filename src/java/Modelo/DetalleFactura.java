@@ -12,24 +12,18 @@ package Modelo;
 public class DetalleFactura {
     
     private int idDetalleFactura;
-    private Factura f;
-    private Producto p;
+    private int idFactura;
+    private int idProducto;
     private int cantidad;
     private float precio;
 
     public DetalleFactura() {
     }
 
-    public DetalleFactura(Producto p, int cantidad, float precio) {
-        this.p = p;
-        this.cantidad = cantidad;
-        this.precio = precio;
-    }
-    
-    public DetalleFactura(int idDetalleFactura, Factura f, Producto p, int cantidad, float precio) {
+    public DetalleFactura(int idDetalleFactura, int idFactura, int idProducto, int cantidad, float precio) {
         this.idDetalleFactura = idDetalleFactura;
-        this.f = f;
-        this.p = p;
+        this.idFactura = idFactura;
+        this.idProducto = idProducto;
         this.cantidad = cantidad;
         this.precio = precio;
     }
@@ -42,28 +36,20 @@ public class DetalleFactura {
         this.idDetalleFactura = idDetalleFactura;
     }
 
-    public Factura getF() {
-        return f;
-    }
-    
     public int getIdFactura() {
-        return f.getIdFactura();
+        return idFactura;
     }
 
-    public void setF(Factura f) {
-        this.f = f;
+    public void setIdFactura(int idFactura) {
+        this.idFactura = idFactura;
     }
 
-    public Producto getP() {
-        return p;
-    }
-    
-    public String getNombreProducto() {
-        return p.getNombre();
+    public int getIdProducto() {
+        return idProducto;
     }
 
-    public void setP(Producto p) {
-        this.p = p;
+    public void setIdProducto(int idProducto) {
+        this.idProducto = idProducto;
     }
 
     public int getCantidad() {
@@ -82,5 +68,8 @@ public class DetalleFactura {
         this.precio = precio;
     }
     
+    public float getSubtotal(){
+        return precio * cantidad;
+    }
     
 }

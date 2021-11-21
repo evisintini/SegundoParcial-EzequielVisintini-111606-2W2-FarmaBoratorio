@@ -84,9 +84,11 @@ public class ValidarServlet extends HttpServlet {
             String contraseña = request.getParameter("txtpassword");
             empleado = gestorBD.Validar(documento, contraseña);
 
-            if (empleado.getNombre() != null) {
-                request.setAttribute("empleado", empleado);
-                request.getRequestDispatcher("LoginServlet?menu=principal").forward(request, response);
+            if (empleado != null) {
+                request.getSession().setAttribute("usuario", empleado.getUsuario());
+                request.getSession().setAttribute("contraseña", empleado.getContraseña());
+                response.sendRedirect("/SegundoParcial-EzequielVisintini-111606-2W2-FarmaBoratorio/principal.jsp");
+//                request.getRequestDispatcher("LoginServlet?menu=principal").forward(request, response);
             } else {          
                 request.getRequestDispatcher("index.jsp").forward(request, response);
             }

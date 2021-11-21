@@ -5,6 +5,7 @@
  */
 package Modelo;
 import java.time.*;
+import java.sql.*;
 //import java.util.Date;
 
 /**
@@ -14,11 +15,10 @@ import java.time.*;
 public class Factura {
     
     private int idFactura;
-    private Sucursal s;
-    private LocalDate fecha;
+    private int idSucursal;
+    private Date fecha;
     private String nombreCliente;
-    private Empleado e;
-    private int numeroReceta;
+    private int idEmpleado;
 
     public Factura() {
     }
@@ -26,14 +26,20 @@ public class Factura {
     public Factura(int idFactura) {
         this.idFactura = idFactura;
     }
-    
-    public Factura(int idFactura, Sucursal s, LocalDate fecha, String nombreCliente, Empleado e, int numeroReceta) {
-        this.idFactura = idFactura;
-        this.s = s;
+
+    public Factura(int idSucursal, Date fecha, String nombreCliente, int idEmpleado) {
+        this.idSucursal = idSucursal;
         this.fecha = fecha;
         this.nombreCliente = nombreCliente;
-        this.e = e;
-        this.numeroReceta = numeroReceta;
+        this.idEmpleado = idEmpleado;
+    }
+
+    public Factura(int idFactura, int idSucursal, Date fecha, String nombreCliente, int idEmpleado) {
+        this.idFactura = idFactura;
+        this.idSucursal = idSucursal;
+        this.fecha = fecha;
+        this.nombreCliente = nombreCliente;
+        this.idEmpleado = idEmpleado;
     }
 
     public int getIdFactura() {
@@ -44,19 +50,19 @@ public class Factura {
         this.idFactura = idFactura;
     }
 
-    public Sucursal getS() {
-        return s;
+    public int getIdSucursal() {
+        return idSucursal;
     }
 
-    public void setS(Sucursal s) {
-        this.s = s;
+    public void setIdSucursal(int idSucursal) {
+        this.idSucursal = idSucursal;
     }
 
-    public LocalDate getFecha() {
+    public Date getFecha() {
         return fecha;
     }
 
-    public void setFecha(LocalDate fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 
@@ -68,21 +74,11 @@ public class Factura {
         this.nombreCliente = nombreCliente;
     }
 
-    public Empleado getE() {
-        return e;
+    public int getIdEmpleado() {
+        return idEmpleado;
     }
 
-    public void setE(Empleado e) {
-        this.e = e;
+    public void setIdEmpleado(int idEmpleado) {
+        this.idEmpleado = idEmpleado;
     }
-
-    public int getNumeroReceta() {
-        return numeroReceta;
-    }
-
-    public void setNumeroReceta(int numeroReceta) {
-        this.numeroReceta = numeroReceta;
-    }
-    
-    
 }
